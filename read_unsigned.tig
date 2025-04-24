@@ -1,0 +1,38 @@
+let
+  var res := 0
+  var valid := 1
+  var c := ""
+
+  function loop() =
+    (
+      c := getchar();
+      if c <> "\n" then
+        if ord(c) >= ord("0") then
+          if ord(c) <= ord("9") then
+            (
+              res := res * 10 + (ord(c) - ord("0"));
+              loop()
+            )
+          else
+            (
+              valid := 0;
+              loop()
+            )
+        else
+          (
+            valid := 0;
+            loop()
+          )
+    )
+
+  function read_unsigned() : int =
+    (
+      loop();
+      if valid = 1 then res else -1
+    )
+
+  var n := read_unsigned()
+in
+  print_int(n * 2);
+  print("\n")
+end
